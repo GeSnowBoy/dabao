@@ -1,7 +1,7 @@
-const path = require('path')
-const webpack = require('webpack')
+const path = require('path');
+const webpack = require('webpack');
 function resolve(dir) {
-  return path.join(__dirname, '..', dir)
+  return path.join(__dirname, '..', dir);
 }
 module.exports = {
   entry: './src/index.js',
@@ -39,6 +39,10 @@ module.exports = {
         options: {
           name: '[name].[ext]?[hash]'
         }
+      },
+      {
+        test: /\.(less|css)$/,
+        loader: 'style-loader!css-loader!less-loader'
       }
     ]
   },
@@ -63,10 +67,10 @@ module.exports = {
     hints: false
   },
   devtool: '#source-map'
-}
+};
 
 if (process.env.NODE_ENV === 'production') {
-  module.exports.devtool = '#source-map'
+  module.exports.devtool = '#source-map';
   // http://vue-loader.vuejs.org/en/workflow/production.html
   module.exports.plugins = (module.exports.plugins || []).concat([
     new webpack.DefinePlugin({
@@ -83,5 +87,5 @@ if (process.env.NODE_ENV === 'production') {
     new webpack.LoaderOptionsPlugin({
       minimize: true
     })
-  ])
+  ]);
 }
